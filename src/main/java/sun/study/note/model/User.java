@@ -2,6 +2,7 @@ package sun.study.note.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * Created on 2021-06-18
  */
 @Data
+@Builder
 public class User {
     @TableId(type = IdType.AUTO)
     private Long id;
