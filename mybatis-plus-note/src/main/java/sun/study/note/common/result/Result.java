@@ -1,4 +1,4 @@
-package sun.study.note.common;
+package sun.study.note.common.result;
 
 /**
  * @author sunzhen <sunzhen03@kuaishou.com>
