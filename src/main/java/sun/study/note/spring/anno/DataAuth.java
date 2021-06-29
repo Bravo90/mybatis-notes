@@ -9,9 +9,9 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface TestAnno {
+public @interface DataAuth {
 
-    Class<?> paramClass() default Object.class;
-    int type() default 0;
+    String targetParamName() default "";
 
+    String targetParamClassMethodName() default "";
 }
