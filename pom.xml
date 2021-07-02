@@ -12,6 +12,7 @@
         <module>mybatis-note</module>
         <module>mybatis-plus-note</module>
         <module>mybatis-spring-note</module>
+        <module>common-note</module>
     </modules>
     <name>mybatis-note</name>
 

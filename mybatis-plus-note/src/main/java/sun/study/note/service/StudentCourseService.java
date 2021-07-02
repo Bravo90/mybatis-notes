@@ -2,7 +2,6 @@ package sun.study.note.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.swagger.models.auth.In;
 import sun.study.note.domian.StudentCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import sun.study.note.domian.dto.StudentCourseDTO;
