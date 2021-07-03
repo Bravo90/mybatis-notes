@@ -1,7 +1,8 @@
 package sun.study.note;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
+import com.mysql.cj.jdbc.Driver;
 
+import java.io.PipedReader;
 import java.sql.*;
 
 /**
@@ -17,55 +18,36 @@ public class JDBCMainAPP {
     private static final String PASSWORD = "123456";
 
     public static void main(String[] args) throws Exception {
-        // 加载驱动程序
-        Class.forName(DRIVER_CLASS_NAME);
-        // 获取数据库连接
-        Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        // 关闭自动提交
-        connection.setAutoCommit(false);
-        // 操作数据库，执行sql
-        String sql = "update ts_student set age = ? where id = ?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, 23);
-        ps.setInt(2, 1);
-
-        int result = ps.executeUpdate();
-        System.out.println(result);
-
-        if (true) {
-            try {
-                throw new RuntimeException("手动异常！");
-            } catch (Exception e) {
-                connection.rollback();
-            }
-        }
-        connection.commit();
-
-
+        test1();
     }
 
-    public static void test2() throws Exception {
-        MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setURL(URL);
-        Connection conn = dataSource.getConnection(USERNAME, PASSWORD);
+    private static void register1() throws Exception {
+        Class.forName(DRIVER_CLASS_NAME);
+    }
 
-        String sql = "select * from ts_student where id > ?";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, 3);
-        ResultSet resultSet = ps.executeQuery();
-        // 遍历结果集
-        while (resultSet.next()) {
-            System.out.println(String.format("| %4d | %-10s | %3d | %-20s |",
-                    resultSet.getInt("id"), resultSet.getString("name"),
-                    resultSet.getInt("age"), resultSet.getString("email")));
-        }
+    private static void register2() throws Exception {
+        Class.forName("java.sql.DriverManager");
+    }
+
+    private static void register3() throws Exception {
+        DriverManager.registerDriver(new Driver());
+    }
+
+    private static void register4() throws Exception {
+        DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
     public static void test1() throws Exception {
+
+        register3();
+        // DriverManager.getConnection(URL, USERNAME, PASSWORD);
         // 加载驱动程序
-        Class.forName(DRIVER_CLASS_NAME);
+        // Class.forName(DRIVER_CLASS_NAME);
+        //Driver driver = new com.mysql.cj.jdbc.Driver();
         // 获取数据库连接
-        Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+       // Class.forName("java.sql.DriverManager");
+        // Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+       /*  System.out.println(connection.getClass().getName());
         // 操作数据库，执行sql
         Statement statement = connection.createStatement();
         String sql = "select * from ts_student";
@@ -79,6 +61,6 @@ public class JDBCMainAPP {
         // 关闭连接
         statement.close();
         resultSet.close();
-        connection.close();
+        connection.close();*/
     }
 }
