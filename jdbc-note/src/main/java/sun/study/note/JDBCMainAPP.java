@@ -2,7 +2,6 @@ package sun.study.note;
 
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.PipedReader;
 import java.sql.*;
 
 /**
