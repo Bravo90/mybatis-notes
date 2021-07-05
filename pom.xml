@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sun.study.note</groupId>
-    <artifactId>mybtis-notes</artifactId>
+    <artifactId>mybatis-notes</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
