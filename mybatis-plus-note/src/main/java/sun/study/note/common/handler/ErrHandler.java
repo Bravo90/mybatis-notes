@@ -14,7 +14,7 @@ import java.util.logging.Level;
  * @author sunzhen <sunzhen03@kuaishou.com>
  * Created on 2021-06-16
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 @Slf4j
 public class ErrHandler {
 

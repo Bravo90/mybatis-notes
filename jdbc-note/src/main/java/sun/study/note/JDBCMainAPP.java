@@ -1,5 +1,6 @@
 package sun.study.note;
 
+import com.mysql.cj.jdbc.ConnectionImpl;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -25,28 +26,12 @@ public class JDBCMainAPP {
     }
 
     private static void register2() throws Exception {
-        Class.forName("java.sql.DriverManager");
-    }
-
-    private static void register3() throws Exception {
         DriverManager.registerDriver(new Driver());
     }
 
-    private static void register4() throws Exception {
-        DriverManager.getConnection(URL, USERNAME, PASSWORD);
-    }
-
     public static void test1() throws Exception {
+        Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
-        register3();
-        // DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        // 加载驱动程序
-        // Class.forName(DRIVER_CLASS_NAME);
-        //Driver driver = new com.mysql.cj.jdbc.Driver();
-        // 获取数据库连接
-       // Class.forName("java.sql.DriverManager");
-        // Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-       /*  System.out.println(connection.getClass().getName());
         // 操作数据库，执行sql
         Statement statement = connection.createStatement();
         String sql = "select * from ts_student";
@@ -60,6 +45,6 @@ public class JDBCMainAPP {
         // 关闭连接
         statement.close();
         resultSet.close();
-        connection.close();*/
+        connection.close();
     }
 }

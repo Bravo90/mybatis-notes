@@ -2,6 +2,8 @@ package sun.study.note;
 
 //import com.mysql.cj.jdbc.MysqlDataSource;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +23,7 @@ public class DataSourceMainApp {
     }
 
     public static void test2() throws Exception {
-       /* MysqlDataSource dataSource = new MysqlDataSource();
+       MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setURL(URL);
         Connection conn = dataSource.getConnection(USERNAME, PASSWORD);
 
@@ -34,6 +36,6 @@ public class DataSourceMainApp {
             System.out.println(String.format("| %4d | %-10s | %3d | %-20s |",
                     resultSet.getInt("id"), resultSet.getString("name"),
                     resultSet.getInt("age"), resultSet.getString("email")));
-        }*/
+        }
     }
 }
