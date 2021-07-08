@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import sun.study.note.common.result.Result;
 
 import sun.study.note.domian.Student;
+import sun.study.note.domian.dto.ProjectDeliveryDTO;
 import sun.study.note.domian.dto.StudentCourseDTO;
 import sun.study.note.domian.dto.StudentDTO;
 import sun.study.note.service.StudentCourseService;
 import sun.study.note.service.StudentService;
+
+import java.util.Collections;
 
 /**
  * <p>
@@ -35,17 +38,19 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
     @ApiOperation("保存信息")
     @GetMapping("/getStudent")
     public Result<Student> getStudent(int id) {
+
         Student student = studentService.getById(id);
         return Result.ok(student);
     }
 
     @ApiOperation("保存信息")
     @PostMapping("/save")
-    public Result<StudentDTO> save(@RequestBody @Validated StudentDTO studentDTO) {
-        return Result.ok(studentDTO);
+    public Result<ProjectDeliveryDTO> save(@RequestBody  ProjectDeliveryDTO projectDeliveryDTO) {
+        return Result.ok(projectDeliveryDTO);
     }
 
     @ApiOperation("分页查询")

@@ -1,9 +1,7 @@
 package sun.study.note.domian.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.*;
 
@@ -11,9 +9,10 @@ import javax.validation.constraints.*;
  * @author sunzhen <sunzhen03@kuaishou.com>
  * Created on 2021-07-02
  */
-@Getter
-@Setter
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentDTO {
 
     @ApiModelProperty(value = "姓名")
@@ -28,5 +27,5 @@ public class StudentDTO {
 
     @ApiModelProperty(value = "邮箱")
     @Email
-    private String email;
+    private String email = "123@qw.com";
 }
