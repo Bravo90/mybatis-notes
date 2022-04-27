@@ -3,6 +3,8 @@ package sun.study.note.service;
 import sun.study.note.domian.Student;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface StudentService extends IService<Student> {
 
+    void batchSave(int batchSize) ;
 }

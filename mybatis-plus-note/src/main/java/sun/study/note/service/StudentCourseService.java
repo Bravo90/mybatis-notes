@@ -17,4 +17,7 @@ import sun.study.note.domian.dto.StudentCourseDTO;
 public interface StudentCourseService extends IService<StudentCourse> {
 
     IPage<StudentCourseDTO> selectStudentCoursePage(Page<StudentCourseDTO> page, Integer courseId);
+
+    void batchSave();
+
 }

@@ -28,4 +28,8 @@ public class StudentCourseServiceImpl extends ServiceImpl<StudentCourseMapper, S
     public IPage<StudentCourseDTO> selectStudentCoursePage(Page<StudentCourseDTO> page, Integer courseId) {
         return studentCourseMapper.selectPageDTO(page, courseId);
     }
+
+    @Override
+    public void batchSave() {
+    }
 }

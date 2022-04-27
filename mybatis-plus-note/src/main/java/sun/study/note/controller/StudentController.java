@@ -2,6 +2,7 @@ package sun.study.note.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,4 +60,13 @@ public class StudentController {
         IPage<StudentCourseDTO> studentCourseDTOIPage = studentCourseService.selectStudentCoursePage(new Page<>(1, 2), 1);
         return Result.ok(studentCourseDTOIPage);
     }
+
+    @ApiOperation("批量插入")
+    @GetMapping("/batch/save")
+    public Result batchSave(@RequestParam int batchSize) {
+        studentService.batchSave(batchSize);
+
+        return Result.ok();
+    }
+
 }

@@ -1,9 +1,12 @@
 package sun.study.note.common.result;
 
+import lombok.ToString;
+
 /**
  * @author sunzhen <sunzhen03@kuaishou.com>
  * Created on 2021-06-29
  */
+@ToString
 public class Result<T> {
     private int code;
     private String message;
