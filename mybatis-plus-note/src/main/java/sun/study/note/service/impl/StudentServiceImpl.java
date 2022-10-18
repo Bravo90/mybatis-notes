@@ -63,7 +63,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         private int batchSize;
 
         public SaveCallBack(int batchSize) {
-            this.batchSize = batchSize;
+             batchSize = batchSize;
         }
 
         @Override
@@ -105,7 +105,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         private int batchSize;
 
         public SaveTask(int batchSize) {
-            this.batchSize = batchSize;
+             batchSize = batchSize;
         }
 
         @Override

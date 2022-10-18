@@ -16,9 +16,9 @@ public class Result<T> {
     }
 
     public Result(int code, String message, T result) {
-        this.code = code;
-        this.message = message;
-        this.result = result;
+         code = code;
+         message = message;
+         result = result;
     }
 
     public static <T> Result<T> ok() {
@@ -38,27 +38,27 @@ public class Result<T> {
     }
 
     public int getCode() {
-        return this.code;
+        return  code;
     }
 
     public void setCode(int code) {
-        this.code = code;
+         code = code;
     }
 
     public String getMessage() {
-        return this.message;
+        return  message;
     }
 
     public void setMessage(String message) {
-        this.message = message;
+         message = message;
     }
 
     public T getResult() {
-        return this.result;
+        return  result;
     }
 
     public void setResult(T result) {
-        this.result = result;
+         result = result;
     }
 }
 

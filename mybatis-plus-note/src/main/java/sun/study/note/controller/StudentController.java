@@ -2,24 +2,17 @@ package sun.study.note.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import sun.study.note.common.result.Result;
-
 import sun.study.note.domian.Student;
 import sun.study.note.domian.dto.ProjectDeliveryDTO;
 import sun.study.note.domian.dto.StudentCourseDTO;
-import sun.study.note.domian.dto.StudentDTO;
 import sun.study.note.service.StudentCourseService;
 import sun.study.note.service.StudentService;
-
-import java.util.Collections;
 
 /**
  * <p>

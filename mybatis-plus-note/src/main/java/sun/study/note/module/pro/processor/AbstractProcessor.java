@@ -43,6 +43,6 @@ public abstract class AbstractProcessor<T, R> implements Processor<T, R> {
     }
 
     public void setNext(AbstractProcessor<T, R> next) {
-        this.next = next;
+         next = next;
     }
 }

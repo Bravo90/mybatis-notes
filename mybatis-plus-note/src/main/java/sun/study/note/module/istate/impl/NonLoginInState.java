@@ -24,6 +24,6 @@ public class NonLoginInState extends UserState {
     private void login() {
         System.out.println("跳转登录...");
         System.out.println("登录成功...");
-        this.context.setState(AppContext.STATE_LOGIN);
+         context.setState(AppContext.STATE_LOGIN);
     }
 }

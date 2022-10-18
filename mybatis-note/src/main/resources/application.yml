@@ -1,0 +1,15 @@
+server:
+  port: 8585
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+spring:
+  application:
+    name: my-config
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybatis_demo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  aop:
+    proxy-target-class: true

@@ -23,7 +23,7 @@ public class DataSourceMainApp {
     }
 
     public static void test2() throws Exception {
-       MysqlDataSource dataSource = new MysqlDataSource();
+        MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setURL(URL);
         Connection conn = dataSource.getConnection(USERNAME, PASSWORD);
 

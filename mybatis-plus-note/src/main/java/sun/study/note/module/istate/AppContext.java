@@ -21,8 +21,8 @@ public class AppContext {
     }
 
     public void setState(UserState state) {
-        this.currentState = state;
-        this.currentState.setContext(this);
+         currentState = state;
+         currentState.setContext(this);
     }
 
     public UserState getState() {
@@ -30,10 +30,10 @@ public class AppContext {
     }
 
     public void favorite() {
-        this.currentState.favorite();
+         currentState.favorite();
     }
 
     public void comment(String comment) {
-        this.currentState.comment(comment);
+         currentState.comment(comment);
     }
 }

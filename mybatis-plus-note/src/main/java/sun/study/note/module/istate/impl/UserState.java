@@ -11,7 +11,7 @@ public abstract class UserState {
     protected AppContext context;
 
     public void setContext(AppContext context) {
-        this.context = context;
+         context = context;
     }
 
     public abstract void favorite();
