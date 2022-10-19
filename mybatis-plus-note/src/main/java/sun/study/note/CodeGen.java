@@ -1,3 +1,4 @@
+/*
 package sun.study.note.util;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
@@ -16,10 +17,12 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Scanner;
 
+*/
 /**
  * @author sunzhen03 <sunzhen03@inspur.com>
  * @date 2022/9/20
- */
+ *//*
+
 public class CodeGen {
 
     private static String url = "jdbc:mysql://localhost:3306/mybatis_demo?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai";
@@ -53,7 +56,9 @@ public class CodeGen {
                 .strategyConfig(builder -> {
                     builder.addInclude(scanner("表名，多个英文逗号分割").split(","))
                             .addTablePrefix("cfg_", "sys_", "msg_", "ams_","t_") // 增加过滤表前缀
-                            .entityBuilder() /** entity 配置 */
+                            .entityBuilder() */
+/** entity 配置 *//*
+
                             .enableLombok() // 开启 lombok 模型
                             .enableTableFieldAnnotation() // 开启生成实体时生成字段注解
                             .naming(NamingStrategy.underline_to_camel) // 数据库表映射到实体的命名策略
@@ -63,10 +68,14 @@ public class CodeGen {
                             .addTableFills(new Column("create_time", FieldFill.INSERT)) // 添加表字段填充
                             .addTableFills(new Property("updateTime", FieldFill.INSERT_UPDATE)) // 添加表字段填充
                             .build()
-                            .serviceBuilder() /** service配置*/
+                            .serviceBuilder() */
+/** service配置*//*
+
                             .formatServiceFileName("%sService") // 配置Service名称
                             .build()
-                            .controllerBuilder() /** controller 配置 */
+                            .controllerBuilder() */
+/** controller 配置 *//*
+
                             .enableRestStyle() // 开启生成@RestController 控制器
                             .enableHyphenStyle() // 开启驼峰转连字符
                             .build();
@@ -89,3 +98,4 @@ public class CodeGen {
         throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
 }
+*/

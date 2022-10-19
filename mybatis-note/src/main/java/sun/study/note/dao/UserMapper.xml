@@ -3,6 +3,15 @@
 <mapper namespace="sun.study.note.dao.UserMapper">
 
     <select id="list" resultType="sun.study.note.model.User">
-        select * from form_cfg
+        select * from t_user
+        <where>
+            <if test="name != null and name != ''">
+                and `name` = #{name}
+            </if>
+
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </where>
     </select>
 </mapper>

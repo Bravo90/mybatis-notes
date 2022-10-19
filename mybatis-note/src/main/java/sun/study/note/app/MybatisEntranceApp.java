@@ -3,7 +3,10 @@ package sun.study.note.app;
 import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.mapping.*;
+import org.apache.ibatis.parsing.XNode;
+import org.apache.ibatis.parsing.XPathParser;
+import org.apache.ibatis.scripting.xmltags.*;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,7 +18,7 @@ import sun.study.note.dao.UserMapper;
 import sun.study.note.model.FormCfg;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.util.*;
 
 /**
  * mybatis入口
@@ -48,12 +51,55 @@ public class MybatisEntranceApp {
         configuration.addMapper(UserMapper.class);
         /** SqlSessionFactory */
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+        selectByDesign(sqlSessionFactory);
 
+    }
+
+    private static void selectByDesign(SqlSessionFactory sqlSessionFactory) {
+        Configuration configuration = sqlSessionFactory.getConfiguration();
+        String sql = "<select>\n" +
+                "select * from form_cfg \n" +
+                "<where>\n" +
+                "<if test=\"id!=null and id!=''\">\n" +
+                "and form_cfg_id=#{id}\n" +
+                "</if>\n" +
+                "<if test=\"name != null and name != ''\">\n" +
+                "and form_name = #{name}\n" +
+                "</if>\n" +
+                "</where>\n" +
+                "</select>";
+        XPathParser parser = new XPathParser(sql);
+        XNode xNode = parser.evalNode("select");
+        XMLScriptBuilder scriptBuilder = new XMLScriptBuilder(configuration, xNode);
+        SqlSource sqlSource = scriptBuilder.parseScriptNode();
+
+
+        // ParameterMap paramMap = new ParameterMap.Builder(configuration, "select.list", Map.class, new ArrayList<>()).build();
+        // result解析
+        List<ResultMap> resultMapList = new ArrayList<>();
+        ResultMap resultMap = new ResultMap.Builder(configuration, "select.list", Map.class, new ArrayList<>()).build();
+        resultMapList.add(resultMap);
+
+        MappedStatement ms = new MappedStatement.
+                Builder(configuration, "select.list", sqlSource, SqlCommandType.SELECT)
+                .resultMaps(resultMapList)
+                //   .parameterMap(paramMap)
+                .build();
+
+        configuration.addMappedStatement(ms);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 2);
+        map.put("name", "测试2");
+        List<Map<String, Object>> list = sqlSession.selectList("select.list", map);
+        System.out.println(list);
+    }
+
+    private static void select(SqlSessionFactory sqlSessionFactory) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         FormCfgMapper mapper = sqlSession.getMapper(FormCfgMapper.class);
-
-
         List<FormCfg> list = mapper.list();
         System.out.println(list);
+        sqlSession.close();
     }
 }
