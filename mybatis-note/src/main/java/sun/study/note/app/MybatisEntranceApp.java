@@ -3,6 +3,8 @@ package sun.study.note.app;
 import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.ibatis.builder.MapperBuilderAssistant;
+import org.apache.ibatis.builder.xml.XMLStatementBuilder;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.parsing.XNode;
 import org.apache.ibatis.parsing.XPathParser;
@@ -32,6 +34,39 @@ public class MybatisEntranceApp {
     private static String password = "123456";
 
     public static void main(String[] args) {
+        Configuration configuration = getConfiguration();
+        String sql = "<select id=\"test123\" resultType=\"map\">\n" + "select * from form_cfg \n" + "<where>\n" + "<if test=\"id!=null and id!=''\">\n" + "and form_cfg_id=#{id}\n" + "</if>\n" + "<if test=\"name != null and name != ''\">\n" + "and form_name = #{name}\n" + "</if>\n" + "</where>\n" + "</select>";
+        XPathParser parser = new XPathParser(sql);
+        XNode context = parser.evalNode("select");
+        MapperBuilderAssistant assistant = new MapperBuilderAssistant(configuration, "");
+        assistant.setCurrentNamespace("test");
+        XMLStatementBuilder builder = new XMLStatementBuilder(
+                configuration, assistant, context
+        );
+        builder.parseStatementNode();
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 2);
+        map.put("name", "测试2");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+        List<Map<String, Object>> list = sqlSessionFactory.openSession().selectList("test.test123", map);
+        System.out.println(list);
+
+
+      /*  // 驼峰命名映射
+        configuration.setMapUnderscoreToCamelCase(true);
+        // 注册mapper
+        configuration.addMapper(FormCfgMapper.class);
+        configuration.addMapper(UserMapper.class);
+        *//** SqlSessionFactory *//*
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+        selectByDesign(sqlSessionFactory);*/
+
+    }
+
+
+    private static Configuration getConfiguration() {
         /** 数据源 */
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(url);
@@ -44,15 +79,7 @@ public class MybatisEntranceApp {
         Environment environment = new Environment("development", transactionFactory, dataSource);
         /** 配置 */
         Configuration configuration = new Configuration(environment);
-        // 驼峰命名映射
-        configuration.setMapUnderscoreToCamelCase(true);
-        // 注册mapper
-        configuration.addMapper(FormCfgMapper.class);
-        configuration.addMapper(UserMapper.class);
-        /** SqlSessionFactory */
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
-        selectByDesign(sqlSessionFactory);
-
+        return configuration;
     }
 
     private static void selectByDesign(SqlSessionFactory sqlSessionFactory) {
